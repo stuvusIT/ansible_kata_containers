@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  author: haslersn
+  description: Kata Containers; see https://katacontainers.io/
+  company: stuvus (https://stuvus.uni-stuttgart.de)
+
+  license: MIT
+
+  min_ansible_version: 2.5
+
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+        - stretch
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+
+  galaxy_tags:
+    - kata
+    - container
+    - kubernetes
+    - orchestration
+    - vm
+    - virtualization
+    - docker
+
+dependencies: []

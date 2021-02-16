@@ -1,0 +1,29 @@
+---
+- name: Download Kata Containers archive
+  get_url:
+    url: "{{ kata_containers_archive_url }}"
+    dest: "{{ global_cache_dir }}/kata-containers-{{ kata_containers_checksum }}.tar.gz"
+    checksum: "{{ kata_containers_checksum }}"
+  become: False
+  delegate_to: localhost
+
+- name: Clear unarchive target directory
+  file:
+    path: "/opt/kata-versions/{{ kata_containers_checksum }}"
+    state: absent
+
+- name: Create unarchive target directory
+  file:
+    path: "/opt/kata-versions/{{ kata_containers_checksum }}"
+    state: directory
+
+- name: Unpack Kata Containers archive
+  unarchive:
+    src: "{{ global_cache_dir }}/kata-containers-{{ kata_containers_checksum }}.tar.gz"
+    dest: "/opt/kata-versions/{{ kata_containers_checksum }}"
+
+- name: Install Kata Containers
+  file:
+    path: /opt/kata
+    state: link
+    src: "/opt/kata-versions/{{ kata_containers_checksum }}/opt/kata"
