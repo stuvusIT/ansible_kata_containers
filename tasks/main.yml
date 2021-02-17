@@ -1,0 +1,14 @@
+---
+- name: Check current Kata Containers version
+  stat:
+    path: /opt/kata
+  register: kata_containers_stat
+
+- include_tasks: deploy.yml
+  when: (kata_containers_stat.stat.lnk_target | default("")) != "/opt/kata-versions/" + kata_containers_checksum + "/opt/kata"
+
+- name: Create symlink /usr/local/bin/containerd-shim-kata-v2
+  file:
+    path: /usr/local/bin/containerd-shim-kata-v2
+    state: link
+    src: /opt/kata/bin/containerd-shim-kata-v2
