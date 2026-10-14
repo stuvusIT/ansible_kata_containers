@@ -50,7 +50,7 @@ containerd configuration.
 runtime_type = "io.containerd.kata.v2"
 
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata.options]
-ConfigPath = "/opt/kata/share/defaults/kata-containers/configuration.toml"
+ConfigPath = "/opt/kata/share/defaults/kata-containers/runtime-rs/configuration.toml"
 ```
 
 ## License
